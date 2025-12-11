@@ -74,7 +74,7 @@ class PongGame:
 
     def check_hit(self):
         # hit first paddle
-        if self.ball.x == self.paddle1.x + self.paddle1.width:
+        if self.ball.x <= self.paddle1.x + self.paddle1.width:
             if (
                 self.ball.y <= self.paddle1.y + self.paddle1.height // 2
                 and self.ball.y >= self.paddle1.y - self.paddle1.height // 2
@@ -83,7 +83,7 @@ class PongGame:
             else:
                 self.reset()
         # hit second paddle
-        if self.ball.x == self.paddle2.x - self.paddle2.width:
+        if self.ball.x >= self.paddle2.x - self.paddle2.width:
             if (
                 self.ball.y <= self.paddle2.y + self.paddle2.height // 2
                 and self.ball.y >= self.paddle2.y - self.paddle2.height // 2
@@ -93,10 +93,10 @@ class PongGame:
             else:
                 self.reset()
         # hit top wall
-        if self.ball.y == 0:
+        if self.ball.y <= 0:
             self.ball.speed_y = -self.ball.speed_y
         # hit bottom wall
-        if self.ball.y == self.frame.height - 1:
+        if self.ball.y >= self.frame.height - 1:
             self.ball.speed_y = -self.ball.speed_y
 
     def draw(self):
